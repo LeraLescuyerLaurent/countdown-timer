@@ -13,13 +13,14 @@ const months = [
   "Decembre",
 ];
 const weekdays = [
+    "Dimanche",
   "Lundi",
   "Mardi",
   "Mercredi",
   "Jeudi",
   "Vendredi",
   "Samedi",
-  "Dimanche",
+
 ];
 
 const giveaway = document.querySelector('.giveaway')
@@ -30,8 +31,23 @@ const items = document.querySelectorAll('.deadline-format h4')
 * écrit la date de fin du compteur dans la div qui a la class ".giveaway" possible d add la date dans new Date()
 */
 // definit le 31 dec 2020 a 23h59min59s
-let futureDate = new Date(2050, 10, 06, 4, 6, 59);
-console.log(futureDate);
+// let futureDate = new Date(2050, 10, 06, 4, 6, 59);
+// si on definit une date de fin pour tous les article du site
+
+const tempDate = new Date();
+const tempYear = tempDate.getFullYear();
+const tempMonth = tempDate.getMonth();
+const tempDay = tempDate.getDay() + 1;
+
+
+
+let futureDate = new Date(tempYear, tempMonth, tempDay + 1, 17, 6, 59);
+
+
+
+
+
+// console.log(futureDate);
 const year = futureDate.getFullYear();
 const hour = futureDate.getHours();
 const minutes = futureDate.getMinutes();
@@ -42,7 +58,7 @@ month = months[month]
 // console.log(month);
 const date = futureDate.getDate()
 // console.log(date);
-const weekday = weekdays[futureDate.getDay() - 1];
+const weekday = weekdays[futureDate.getDay()];
 // console.log(weeckday);
 // console.log(weekday);
 giveaway.textContent = `fin de l'année le ${weekday} ${date} ${month} ${year} ${hour}:${minutes}:${seconds}`;
