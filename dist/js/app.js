@@ -24,7 +24,7 @@ const weekdays = [
 
 const giveaway = document.querySelector('.giveaway')
 const deadLine = document.querySelector('.deadline')
-const items = document.querySelector('.deadline-format h4')
+const items = document.querySelectorAll('.deadline-format h4')
 
 /** 
 * écrit la date de fin du compteur dans la div qui a la class ".giveaway" possible d add la date dans new Date()
@@ -49,20 +49,58 @@ giveaway.textContent = `fin de l'année le ${weekday} ${date} ${month} ${year} $
 
 /** future time in ms */
 const futureTime = futureDate.getTime()
-console.log(futureTime);
+// console.log(futureTime);
   /** 1s = 1000ms  1m = 60s  1h = 60min  1day = 24hr */
 
 function getRemainingTime() {
   const today = new Date().getTime();
-  console.log(today);
+  // console.log(today);
   const t = futureTime - today
-  console.log(t);
+  // console.log(t);
 
   /**valeur en ms */
 
   const oneDay = 24*60*60*1000;
-  console.log(oneDay);
+  // console.log(oneDay);
+  const oneHour = 60*60*1000;
+  // console.log(oneHour);
+  const oneMinut = 60*1000;
+  // console.log(oneMinuts);
+  
+
+  let days = t / oneDay;
+  days = Math.floor(days);
+  // console.log(days);
+  let hours = Math.floor((t % oneDay) / oneHour);
+  // console.log(hours);
+  let minuts = Math.floor((t % oneHour) /oneMinut)
+  // console.log(minuts);
+  let seconds = Math.floor((t % oneMinut) / 1000)
+  // console.log(seconds);
+
+
+
+function format(item) {
+// add un 0 devant un chiffre 
+  if (item < 10) {
+    return item = `0${item}`
+  }
+  return item
+}
+
+  // injecter les result dans le html
+const values = [days, hours, minuts, seconds];
+
+  items.forEach(function(item, index){
+    // console.log(format(values[index]));
+    item.innerHTML = format(values[index])
+  })
+
+
 
 }
+
+//countDown
+let countDown = setInterval(getRemainingTime,1000)
 
 getRemainingTime() 
