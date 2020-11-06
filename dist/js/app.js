@@ -30,7 +30,7 @@ const items = document.querySelectorAll('.deadline-format h4')
 * écrit la date de fin du compteur dans la div qui a la class ".giveaway" possible d add la date dans new Date()
 */
 // definit le 31 dec 2020 a 23h59min59s
-let futureDate = new Date(2020, 11, 31, 23, 59, 59);
+let futureDate = new Date(2050, 10, 06, 4, 6, 59);
 console.log(futureDate);
 const year = futureDate.getFullYear();
 const hour = futureDate.getHours();
@@ -42,7 +42,7 @@ month = months[month]
 // console.log(month);
 const date = futureDate.getDate()
 // console.log(date);
-const weekday = weekdays[futureDate.getDay()];
+const weekday = weekdays[futureDate.getDay() - 1];
 // console.log(weeckday);
 // console.log(weekday);
 giveaway.textContent = `fin de l'année le ${weekday} ${date} ${month} ${year} ${hour}:${minutes}:${seconds}`;
@@ -95,7 +95,10 @@ const values = [days, hours, minuts, seconds];
     // console.log(format(values[index]));
     item.innerHTML = format(values[index])
   })
-
+  if (t < 0) {
+    clearInterval(countDown);
+    deadLine.innerHTML = `<h4 class="expired"> Yep</h4>`
+  }
 
 
 }
